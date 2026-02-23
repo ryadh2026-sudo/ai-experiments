@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عقل المؤسسة - المنصة الذكية</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .search-container {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .search-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            border: 2px solid #ecf0f1;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: var(--border-radius);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
+            background: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        #result {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* تنسيق لنتائج وهمية لاختبار الواجهة */
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>عقل المؤسسة</h1>
+        <p>المستودع الذكي والتحليلي لبيانات المنظومة</p>
+    </header>
+
+    <main class="search-container">
+        <div class="search-group">
+            <input type="text" id="searchInput" class="search-box" placeholder="أدخل الكلمة المفتاحية (رقم العقد، اسم التقرير، مجال الخبرة)...">
+            <button class="btn" onclick="executeSearch()">بحث وتحليل</button>
+        </div>
+        
+        <div class="filters">
+            <select class="filter-select" id="docType">
+                <option value="all">كل التصنيفات</option>
+                <option value="contract">عقود قانونية</option>
+                <option value="report">تقارير أداء</option>
+                <option value="expertise">قاعدة خبرات</option>
+            </select>
+
+            <select class="filter-select" id="department">
+                <option value="all">كل الأقسام</option>
+                <option value="hr">الموارد البشرية</option>
+                <option value="finance">المالية</option>
+                <option value="tech">تقنية المعلومات</option>
+            </select>
+
+            <select class="filter-select" id="dateRange">
+                <option value="all">أي وقت</option>
+                <option value="year">هذا العام</option>
+                <option value="month">هذا الشهر</option>
+            </select>
+        </div>
+    </main>
+
+    <section id="result"></section>
+
+    <script>
+        // سكربت بسيط لتمثيل المنطق البرمجي للواجهة (Mockup)
+        function executeSearch() {
+            const resultDiv = document.getElementById('result');
+            const query = document.getElementById('searchInput').value;
+            
+            if (!query.trim()) {
+                resultDiv.innerHTML = '<p style="color: #e74c3c; text-align: center;">خطأ منطقي: لا يمكن البحث بقيمة فارغة.</p>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<p style="text-align: center; color: #7f8c8d;">جاري تحليل البيانات...</p>';
+            
+            // محاكاة تأخير الاتصال بقاعدة البيانات
+            setTimeout(() => {
+                resultDiv.innerHTML = `
+                    <div class="result-card">
+                        <h3>📄 تقرير أرباح الربع الثالث - ${query}</h3>
+                        <p style="color: #7f8c8d; font-size: 0.9em; margin-top: 5px;">القسم: المالية | المطابقة: 94% (بناءً على المنطق الضبابي)</p>
+                    </div>
+                    <div class="result-card" style="border-color: #2ecc71;">
+                        <h3>🤝 عقد شراكة استراتيجية - ${query}</h3>
+                        <p style="color: #7f8c8d; font-size: 0.9em; margin-top: 5px;">القسم: الإدارة العليا | المطابقة: 82%</p>
+                    </div>
+                `;
+            }, 800);
+        }
+    </script>
+</body>
+</html>
